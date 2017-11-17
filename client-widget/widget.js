@@ -3,8 +3,6 @@ import io from './lib/socket.io.js';
 // styles
 import './style.css';
 
-console.log(io);
-
 const socket = io('http://localhost:8888');
 
 const chatContainer = document.createElement('div');

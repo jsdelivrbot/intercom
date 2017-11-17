@@ -78,8 +78,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // styles
 
 
-console.log(__WEBPACK_IMPORTED_MODULE_0__lib_socket_io_js___default.a);
-
 const socket = __WEBPACK_IMPORTED_MODULE_0__lib_socket_io_js___default()('http://localhost:8888');
 
 const chatContainer = document.createElement('div');
