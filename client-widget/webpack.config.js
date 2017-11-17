@@ -1,7 +1,7 @@
 module.exports = {
-  entry: './client-widget/widget.js',
+  entry: './widget.js',
   output: {
-    filename: './client-widget/build/bundle.js',
+    filename: './build/bundle.js',
     path: __dirname
   },
   module: {

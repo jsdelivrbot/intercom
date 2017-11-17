@@ -1,7 +1,9 @@
 // client-side socket.io
-import io from '../node_modules/socket.io-client/dist/socket.io.js';
+import io from './lib/socket.io.js';
 // styles
 import './style.css';
+
+console.log(io);
 
 const socket = io('http://localhost:8888');
 

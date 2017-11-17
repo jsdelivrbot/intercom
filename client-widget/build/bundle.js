@@ -69,8 +69,8 @@
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_socket_io_client_dist_socket_io_js__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_socket_io_client_dist_socket_io_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__node_modules_socket_io_client_dist_socket_io_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lib_socket_io_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lib_socket_io_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__lib_socket_io_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__style_css__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__style_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__style_css__);
 // client-side socket.io
@@ -78,7 +78,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // styles
 
 
-const socket = __WEBPACK_IMPORTED_MODULE_0__node_modules_socket_io_client_dist_socket_io_js___default()('http://localhost:8888');
+console.log(__WEBPACK_IMPORTED_MODULE_0__lib_socket_io_js___default.a);
+
+const socket = __WEBPACK_IMPORTED_MODULE_0__lib_socket_io_js___default()('http://localhost:8888');
 
 const chatContainer = document.createElement('div');
 chatContainer.id = 'chat-container';
@@ -144,8 +146,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../node_modules/css-loader/index.js!./style.css", function() {
-			var newContent = require("!!../node_modules/css-loader/index.js!./style.css");
+		module.hot.accept("!!./node_modules/css-loader/index.js!./style.css", function() {
+			var newContent = require("!!./node_modules/css-loader/index.js!./style.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
