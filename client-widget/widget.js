@@ -1,11 +1,21 @@
+// client-side socket.io
 import io from '../node_modules/socket.io-client/dist/socket.io.js';
-
+// styles
 import './style.css';
 
-let socket = io('http://localhost:8888');
+const socket = io('http://localhost:8888');
 
-const input = document.getElementById('input');
-const chatBox = document.getElementById('chat-container');
+const chatContainer = document.createElement('div');
+chatContainer.id = 'chat-container';
+document.body.appendChild(chatContainer);
+
+const chatBox = document.createElement('div');
+chatBox.id = 'chat-box';
+chatContainer.appendChild(chatBox);
+
+const input = document.createElement('input');
+input.id = 'input';
+chatContainer.appendChild(input);
 
 
 input.addEventListener('keypress', (val) => {
@@ -20,8 +30,9 @@ input.addEventListener('keypress', (val) => {
 function createLineOfText(val, alignment) {
   const line = document.createElement('div');
   line.innerHTML = val;
+  line.style.margin = '0px 5px';
   line.style.textAlign = alignment;
-  chatBox.parentNode.insertBefore(line, chatBox);
+  chatBox.appendChild(line)
 }
 
 socket.on('reply', (msg) => {

@@ -8,7 +8,7 @@
   widget.style.height = '100px';
   widget.style.backgroundColor = 'red';
 
-  document.body.appendChild(widget)
+  document.body.appendChild(widget);
 
   widget.addEventListener('click', () => {
     socket.emit('admin message', 'clicked!')

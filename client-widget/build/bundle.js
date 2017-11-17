@@ -73,14 +73,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node_modules_socket_io_client_dist_socket_io_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__node_modules_socket_io_client_dist_socket_io_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__style_css__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__style_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__style_css__);
+// client-side socket.io
+
+// styles
 
 
+const socket = __WEBPACK_IMPORTED_MODULE_0__node_modules_socket_io_client_dist_socket_io_js___default()('http://localhost:8888');
 
+const chatContainer = document.createElement('div');
+chatContainer.id = 'chat-container';
+document.body.appendChild(chatContainer);
 
-let socket = __WEBPACK_IMPORTED_MODULE_0__node_modules_socket_io_client_dist_socket_io_js___default()('http://localhost:8888');
+const chatBox = document.createElement('div');
+chatBox.id = 'chat-box';
+chatContainer.appendChild(chatBox);
 
-const input = document.getElementById('input');
-const chatBox = document.getElementById('chat-container');
+const input = document.createElement('input');
+input.id = 'input';
+chatContainer.appendChild(input);
 
 
 input.addEventListener('keypress', (val) => {
@@ -95,8 +105,9 @@ input.addEventListener('keypress', (val) => {
 function createLineOfText(val, alignment) {
   const line = document.createElement('div');
   line.innerHTML = val;
+  line.style.margin = '0px 5px';
   line.style.textAlign = alignment;
-  chatBox.parentNode.insertBefore(line, chatBox);
+  chatBox.appendChild(line)
 }
 
 socket.on('reply', (msg) => {
@@ -152,7 +163,7 @@ exports = module.exports = __webpack_require__(4)(undefined);
 
 
 // module
-exports.push([module.i, "body {\n    background-color: red;\n}", ""]);
+exports.push([module.i, "* {\n    -webkit-box-sizing: border-box;\n    -moz-box-sizing: border-box;\n    box-sizing: border-box;\n}\n\n#chat-container {\n    width: 200px;\n    height: 300px;\n    border: 1px solid black;\n    position: fixed;\n    bottom: 5px;\n    right: 5px;\n    overflow: scroll;\n}\n\n#chat-box {\n    width: 200px;\n    height: 280px;\n    overflow: scroll;\n}\n\n#input {\n    width: 100%;\n    height: 20px;\n    position: absolute;\n    bottom: 0;\n}", ""]);
 
 // exports
 
