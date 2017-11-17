@@ -1,6 +1,7 @@
 (function() {
   let socket = io();
 
+  socket.emit('admin-init', 'admin initialized');
 
   const widget = document.createElement('div');
   widget.style.width = '100px';
@@ -10,19 +11,12 @@
   document.body.appendChild(widget)
 
   widget.addEventListener('click', () => {
-    socket.emit('new message', 'clicked!')
+    socket.emit('admin message', 'clicked!')
+  });
+
+  socket.on('visitor message', (data) => {
+    console.log(data.msg, data.visitor)
+    socket.emit('reply', {msg: 'acknowldeged', visitor: data.visitor})
   })
 
-  socket.on('reply', (msg) => {
-    console.log(msg)
-  })
-  // socket.on('init', (msg) => {
-  //   console.log('hi', msg)
-  // });
-  //
-  // socket.on('message', (msg) => {
-  //   let chat = document.createElement('div');
-  //   chat.innerHTML = msg;
-  //   document.body.appendChild(chat);
-  // });
 })();

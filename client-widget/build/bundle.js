@@ -75,15 +75,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 let socket = __WEBPACK_IMPORTED_MODULE_0__node_modules_socket_io_client_dist_socket_io_js___default()('http://localhost:8888');
 
-console.log(socket)
-
-const submitButton = document.getElementById('submit');
 const input = document.getElementById('input');
 
 
 input.addEventListener('keypress', (val) => {
   if (event.keyCode === 13) {
-    socket.emit('new message', input.value)
+    socket.emit('visitor message', input.value);
   }
 
 });
