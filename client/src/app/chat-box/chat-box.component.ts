@@ -10,10 +10,9 @@ import {ActivatedRoute} from '@angular/router';
   templateUrl: './chat-box.component.html',
   styleUrls: ['./chat-box.component.css']
 })
-export class ChatBoxComponent implements OnInit, OnDestroy {
+export class ChatBoxComponent implements OnInit {
 
   messages: Message[] = [];
-  subscription: Subscription = null;
 
   visitorId: string;
 
@@ -23,11 +22,8 @@ export class ChatBoxComponent implements OnInit, OnDestroy {
     this.route.params.subscribe(params => {
       this.visitorId = params.id;
 
-      this.subscription = this.chatLogService
+      this.messages = this.chatLogService
         .getLog(params.id)
-        .subscribe(logs => {
-          this.messages = logs;
-        });
     });
   }
 
@@ -42,9 +38,4 @@ export class ChatBoxComponent implements OnInit, OnDestroy {
       e.target.value = '';
     }
   }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
 }

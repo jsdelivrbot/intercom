@@ -20,13 +20,13 @@ export class ChatLogService {
     }
   }
 
-  public getLog(id: string): Observable<Message[]> {
-    // return this.logs[id];
-    return Observable.create((observer) => {
-      if (this.logs.hasOwnProperty(id)) {
-        observer.next(this.logs[id]);
-      }
-    });
+  public getLog(id: string): Message[] {
+    return this.logs[id];
+    // return Observable.create((observer) => {
+    //   if (this.logs.hasOwnProperty(id)) {
+    //     observer.next(this.logs[id]);
+    //   }
+    // });
   }
 
   public addToLog(visitorId: string, message: Message): void {
