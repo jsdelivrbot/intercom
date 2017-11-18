@@ -3,13 +3,13 @@
   <div id="chat-sidebar">
     <div *ngFor="let visitor of chatLogService.getAllVisitors()">
 
-      <div class="visitor-tab">{{visitor}}</div>
+      <a class="visitor-tab" routerLink="/conversation/{{visitor}}">{{visitor}}</a>
 
     </div>
   </div>
 
   <div id="chat-container">
-    hey
+    <router-outlet></router-outlet>
   </div>
 
 </div>

@@ -3,6 +3,7 @@ import {ChatLogService} from '../core/chat-log.service';
 import {Message} from '../core/message.model';
 import {Subscription} from 'rxjs/Subscription';
 import {MessengerService} from '../core/messenger.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-chat-box',
@@ -11,19 +12,24 @@ import {MessengerService} from '../core/messenger.service';
 })
 export class ChatBoxComponent implements OnInit, OnDestroy {
 
-  @Input() visitorId: string;
-
   messages: Message[] = [];
   subscription: Subscription = null;
 
-  constructor(public chatLogService: ChatLogService, private messengerService: MessengerService) { }
+  visitorId: string;
+
+  constructor(public chatLogService: ChatLogService, private messengerService: MessengerService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.subscription = this.chatLogService
-      .getLog(this.visitorId)
-      .subscribe(logs => {
-        this.messages = logs;
-      });
+    this.route.params.subscribe(params => {
+      this.visitorId = params.id;
+
+      this.subscription = this.chatLogService
+        .getLog(params.id)
+        .subscribe(logs => {
+          this.messages = logs;
+        });
+    })
+
   }
 
   userType(id) {

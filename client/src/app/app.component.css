@@ -18,10 +18,11 @@ nav {
   height: calc(100vh - 30px);
   width: 70vw;
   background-color: aliceblue;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .visitor-tab {
+  display: block;
   height: 50px;
   width: 100%;
   border: 1px solid black;
