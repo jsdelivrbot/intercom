@@ -26,6 +26,7 @@ export class MessengerService {
       this.socket.on('visitor message', (data: Message) => {
         this.sendMessage(data.userId, 'Hello');
         observer.next(data);
+        this.chatLogService.addMessage(data.userId, {userId: this.chatLogService.adminId, text: 'Hello'})
       })
     })
   }

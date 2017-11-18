@@ -25,11 +25,12 @@ export class ChatLogService {
     }
     return [];
   }
-  public addMessage(message: Message): void {
-    if (!this.logs.hasOwnProperty(message.userId)) {
-      this.createNewVisitor(message.userId);
+
+  public addMessage(visitorId: string, message: Message): void {
+    if (!this.logs.hasOwnProperty(visitorId)) {
+      this.createNewVisitor(visitorId);
     }
-    this.logs[message.userId].push(message);
+    this.logs[visitorId].push(message);
   }
 
   public getAllVisitors(): String[] {

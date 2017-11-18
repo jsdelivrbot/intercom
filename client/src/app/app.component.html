@@ -1,3 +1,4 @@
+<div>Admin is: {{chatLogService.adminId}}</div>
 <div>
   Messages:
   <div *ngFor="let visitor of chatLogService.getAllVisitors()">{{chatLogService.getLog(visitor)  | json}}</div>
