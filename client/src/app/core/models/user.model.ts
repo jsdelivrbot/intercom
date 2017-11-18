@@ -1,10 +1,12 @@
-export interface IVisitor {
+/* User can be either admin or visitor */
+
+export interface IUser {
   id: string;
   alias: string;
   avatarColor: string;
 }
 
-export class Visitor {
+export class User implements IUser {
   id: string;
   alias: string;
   avatarColor: string;

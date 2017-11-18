@@ -10,7 +10,7 @@
 
         <div class="unread"></div>
         {{chatLogService.threads[visitorId].visitor.alias}}
-        <p>{{chatLogService.threads[visitorId].log[chatLogService.threads[visitorId].log.length - 1].text}}</p>
+        <p style="font-style: italic">{{chatLogService.threads[visitorId].log[chatLogService.threads[visitorId].log.length - 1].userId}}: {{chatLogService.threads[visitorId].log[chatLogService.threads[visitorId].log.length - 1].text}}</p>
       </a>
 
     </div>

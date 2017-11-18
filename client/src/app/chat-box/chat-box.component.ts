@@ -1,8 +1,8 @@
 import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
 import {ConversationService} from '../core/conversation.service';
-import { Message } from '../core/message.model';
+import { Message } from '../core/models/message.model';
 import {Subscription} from 'rxjs/Subscription';
-import {MessengerService} from '../core/messenger.service';
+import {SocketService} from '../core/socket.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -17,12 +17,12 @@ export class ChatBoxComponent implements OnInit, OnDestroy, OnChanges {
   visitorId: string;
   visitorName: string;
 
-  constructor(public conversationService: ConversationService, private messengerService: MessengerService, private route: ActivatedRoute) { }
+  constructor(public conversationService: ConversationService, private socketService: SocketService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.visitorId = params.id;
-      console.log(this.conversationService.threads[this.visitorId])
+      console.log(this.conversationService.threads);
       this.visitorName = this.conversationService.threads[this.visitorId].visitor.name;
 
       this.messages = this.conversationService
@@ -41,7 +41,7 @@ export class ChatBoxComponent implements OnInit, OnDestroy, OnChanges {
       const msg = new Message(this.conversationService.adminId, e.target.value);
 
       // send new message to visitor
-      this.messengerService.sendMessage(msg);
+      this.socketService.sendMessage(msg);
 
       // add new message to the conversation log
       this.conversationService.addToLog(this.visitorId, msg);

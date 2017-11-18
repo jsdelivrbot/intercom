@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Message } from './message.model';
+import { Message } from './models/message.model';
 import {Observable} from 'rxjs/Observable';
-import {Conversation} from './conversation.model';
-import {Visitor} from './visitor.model';
+import {Conversation} from './models/conversation.model';
+import {User} from './models/user.model';
 
 @Injectable()
 export class ConversationService {
@@ -14,7 +14,7 @@ export class ConversationService {
 
   private createNewVisitor(id: string): void {
     this.threads[id] = <Conversation>{
-      visitor: new Visitor(id),
+      visitor: new User(id),
       log: <Message[]>[],
       lastSeen: <number>null
     };

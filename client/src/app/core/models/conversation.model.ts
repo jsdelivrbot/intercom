@@ -1,8 +1,8 @@
 import {IMessage} from './message.model';
-import {Visitor} from './visitor.model';
+import {User} from './user.model';
 
 export interface Conversation {
-  visitor: Visitor,
+  visitor: User,
   log: IMessage[];
   lastSeen: number;
 }

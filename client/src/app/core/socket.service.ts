@@ -1,10 +1,10 @@
 import * as io from 'socket.io-client';
 import { Injectable } from '@angular/core';
-import { Message } from './message.model';
+import { Message } from './models/message.model';
 import {ConversationService} from './conversation.service';
 
 @Injectable()
-export class MessengerService {
+export class SocketService {
 
   private url = 'http://localhost:8888';
   private socket;
