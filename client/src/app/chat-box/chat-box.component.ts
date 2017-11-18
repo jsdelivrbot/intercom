@@ -28,12 +28,11 @@ export class ChatBoxComponent implements OnInit, OnDestroy {
         .subscribe(logs => {
           this.messages = logs;
         });
-    })
-
+    });
   }
 
   userType(id) {
-    return id === this.chatLogService.adminId ? 'admin' : 'visitorId';
+    return id === this.chatLogService.adminId ? 'admin' : 'visitor';
   }
 
   sendMessage(e) {

@@ -1,9 +1,12 @@
-<nav>Admin: {{chatLogService.adminId}}</nav>
+<nav><a routerLink="/">Admin: {{chatLogService.adminId}}</a></nav>
+
 <div class="container">
   <div id="chat-sidebar">
     <div *ngFor="let visitor of chatLogService.getAllVisitors()">
 
-      <a class="visitor-tab" routerLink="/conversation/{{visitor}}">{{visitor}}</a>
+      <a class="visitor-tab"
+         routerLink="/conversation/{{visitor}}"
+         routerLinkActive="is-active">{{visitor}}</a>
 
     </div>
   </div>

@@ -27,3 +27,7 @@ nav {
   width: 100%;
   border: 1px solid black;
 }
+
+.is-active {
+  background-color: cadetblue;
+}

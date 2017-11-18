@@ -1,7 +1,7 @@
 import * as io from 'socket.io-client';
 import { Injectable } from '@angular/core';
-import {Message} from "./message.model";
-import {ChatLogService} from "./chat-log.service";
+import {Message} from './message.model';
+import {ChatLogService} from './chat-log.service';
 
 @Injectable()
 export class MessengerService {
@@ -23,7 +23,7 @@ export class MessengerService {
     // listens for messages from visitors
     this.socket.on('visitor message', (data: Message) => {
       this.chatLogService.addToLog(data.userId, {userId: data.userId, text: data.text});
-    })
+    });
   }
 
   // public getMessages() {
@@ -39,7 +39,7 @@ export class MessengerService {
   // }
 
   public sendMessage(userId: string, text: string) {
-    this.socket.emit('reply', {userId, text})
+    this.socket.emit('reply', {userId, text});
   }
 
 }

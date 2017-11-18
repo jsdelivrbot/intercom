@@ -9,7 +9,7 @@ import { ChatBoxComponent } from './chat-box/chat-box.component';
 
 const appRoutes: Routes = [
   { path: 'conversation/:id', component: ChatBoxComponent },
-]
+];
 
 @NgModule({
   declarations: [
