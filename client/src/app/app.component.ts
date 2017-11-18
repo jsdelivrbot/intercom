@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {MessengerService} from "./core/messenger.service";
-import {Message} from "./core/message.model";
-import {ChatLogService} from "./core/chat-log.service";
+import {MessengerService} from './core/messenger.service';
+import {ChatLogService} from './core/chat-log.service';
 
 @Component({
   selector: 'app-root',

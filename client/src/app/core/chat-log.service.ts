@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Message } from "./message.model";
-import {Observable} from "rxjs/Observable";
+import { Message } from './message.model';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class ChatLogService {
@@ -26,8 +26,7 @@ export class ChatLogService {
       if (this.logs.hasOwnProperty(id)) {
         observer.next(this.logs[id]);
       }
-    })
-
+    });
   }
 
   public addToLog(visitorId: string, message: Message): void {

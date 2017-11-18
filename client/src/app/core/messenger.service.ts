@@ -1,6 +1,5 @@
 import * as io from 'socket.io-client';
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs/Observable";
 import {Message} from "./message.model";
 import {ChatLogService} from "./chat-log.service";
 
@@ -16,11 +15,13 @@ export class MessengerService {
     // this tells the server which socket ID belongs to the admin
     this.socket.emit('admin-init', 'admin initialized');
 
+    // set admin ID within the app
     this.socket.on('admin id set', (id: string) => {
       this.chatLogService.setAdminId(id);
     });
 
-    this.socket.on('visitorId message', (data: Message) => {
+    // listens for messages from visitors
+    this.socket.on('visitor message', (data: Message) => {
       this.chatLogService.addToLog(data.userId, {userId: data.userId, text: data.text});
     })
   }

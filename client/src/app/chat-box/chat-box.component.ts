@@ -1,8 +1,8 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {ChatLogService} from "../core/chat-log.service";
-import {Message} from "../core/message.model";
-import {Subscription} from "rxjs/Subscription";
-import {MessengerService} from "../core/messenger.service";
+import {ChatLogService} from '../core/chat-log.service';
+import {Message} from '../core/message.model';
+import {Subscription} from 'rxjs/Subscription';
+import {MessengerService} from '../core/messenger.service';
 
 @Component({
   selector: 'app-chat-box',
@@ -23,7 +23,7 @@ export class ChatBoxComponent implements OnInit, OnDestroy {
       .getLog(this.visitorId)
       .subscribe(logs => {
         this.messages = logs;
-      })
+      });
   }
 
   userType(id) {
