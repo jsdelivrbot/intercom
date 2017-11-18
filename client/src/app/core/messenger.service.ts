@@ -1,7 +1,7 @@
 import * as io from 'socket.io-client';
 import { Injectable } from '@angular/core';
 import {Message} from './message.model';
-import {ChatLogService} from './chat-log.service';
+import {ConversationService} from './conversation.service';
 
 @Injectable()
 export class MessengerService {
@@ -9,7 +9,7 @@ export class MessengerService {
   private url = 'http://localhost:8888';
   private socket;
 
-  constructor(private chatLogService: ChatLogService) {
+  constructor(private conversationService: ConversationService) {
     this.socket = io(this.url);
 
     // this tells the server which socket ID belongs to the admin
@@ -17,12 +17,12 @@ export class MessengerService {
 
     // set admin ID within the app
     this.socket.on('admin id set', (id: string) => {
-      this.chatLogService.setAdminId(id);
+      this.conversationService.setAdminId(id);
     });
 
     // listens for messages from visitors
     this.socket.on('visitor message', (data: Message) => {
-      this.chatLogService.addToLog(data.userId, {userId: data.userId, text: data.text});
+      this.conversationService.addToLog(data.userId, {userId: data.userId, text: data.text});
     });
   }
 
@@ -33,7 +33,7 @@ export class MessengerService {
   //     //
   //     //   observer.next(data);
   //     //
-  //     //   this.chatLogService.addToLog(data.userId, {userId: this.chatLogService.adminId, text: 'Hello'})
+  //     //   this.conversationService.addToLog(data.userId, {userId: this.conversationService.adminId, text: 'Hello'})
   //     // })
   //   })
   // }

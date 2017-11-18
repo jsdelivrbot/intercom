@@ -1,5 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {ChatLogService} from '../core/chat-log.service';
+import {ConversationService} from '../core/conversation.service';
 import {Message} from '../core/message.model';
 import {Subscription} from 'rxjs/Subscription';
 import {MessengerService} from '../core/messenger.service';
@@ -16,7 +16,7 @@ export class ChatBoxComponent implements OnInit {
 
   visitorId: string;
 
-  constructor(public chatLogService: ChatLogService, private messengerService: MessengerService, private route: ActivatedRoute) { }
+  constructor(public chatLogService: ConversationService, private messengerService: MessengerService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {

@@ -3,15 +3,18 @@ import { Message } from './message.model';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
-export class ChatLogService {
+export class ConversationService {
 
   adminId: string;
-  private logs: any = {};
+  private visitors: any = {};
 
   constructor() { }
 
   private createNewVisitor(id: string): void {
-    this.logs[id] = <Message[]>[];
+    this.visitors[id] = {
+      log: <Message[]>[],
+      lastSeen: <number>null
+    };
   }
 
   public setAdminId(id: string): void {
@@ -21,7 +24,7 @@ export class ChatLogService {
   }
 
   public getLog(id: string): Message[] {
-    return this.logs[id];
+    return this.visitors[id].log;
     // return Observable.create((observer) => {
     //   if (this.logs.hasOwnProperty(id)) {
     //     observer.next(this.logs[id]);
@@ -30,13 +33,13 @@ export class ChatLogService {
   }
 
   public addToLog(visitorId: string, message: Message): void {
-    if (!this.logs.hasOwnProperty(visitorId)) {
+    if (!this.visitors.hasOwnProperty(visitorId)) {
       this.createNewVisitor(visitorId);
     }
-    this.logs[visitorId].push(message);
+    this.visitors[visitorId].log.push(message);
   }
 
   public getAllVisitors(): String[] {
-    return Object.keys(this.logs);
+    return Object.keys(this.visitors);
   }
 }

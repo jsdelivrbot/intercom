@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import {MessengerService} from './core/messenger.service';
-import {ChatLogService} from './core/chat-log.service';
+import {ConversationService} from './core/conversation.service';
 import { ChatBoxComponent } from './chat-box/chat-box.component';
 
 const appRoutes: Routes = [
@@ -22,7 +22,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     MessengerService,
-    ChatLogService
+    ConversationService
   ],
   bootstrap: [AppComponent]
 })
