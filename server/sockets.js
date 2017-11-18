@@ -15,11 +15,11 @@ module.exports = function(server) {
 
     socket.on('visitor message', (msg) => {
       console.log(socket.id, msg);
-      io.to(adminId).emit('visitor message', {msg, visitor: socket.id})
+      io.to(adminId).emit('visitor message', {text: msg, userId: socket.id})
     });
 
     socket.on('reply', (data) => {
-      io.to(data.visitor).emit('reply', data.msg)
+      io.to(data.userId).emit('reply', data.text)
     });
 
     socket.on('disconnect', () => {

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ChatService} from "./chat.service";
-import {ChatData} from "./core/chat-data.model";
+import {MessengerService} from "./core/messenger.service";
+import {Message} from "./core/message.model";
 
 @Component({
   selector: 'app-root',
@@ -13,14 +13,14 @@ export class AppComponent implements OnInit {
   public messages = [];
   public visitors = [];
 
-  constructor(private chatService: ChatService) { }
+  constructor(private messengerService: MessengerService) { }
 
   ngOnInit() {
-    this.chatService.getMessages()
-      .subscribe((data: ChatData) => {
+    this.messengerService.getMessages()
+      .subscribe((data: Message) => {
       console.log('got some data', data)
-        if (this.visitors.indexOf(data.visitor) === -1) {
-          this.visitors.push(data.visitor);
+        if (this.visitors.indexOf(data.userId) === -1) {
+          this.visitors.push(data.userId);
         }
         this.messages.push(data);
       })

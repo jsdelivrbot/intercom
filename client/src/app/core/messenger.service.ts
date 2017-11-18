@@ -1,10 +1,10 @@
 import * as io from 'socket.io-client';
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/Observable";
-import {ChatData} from "./core/chat-data.model";
+import {Message} from "./message.model";
 
 @Injectable()
-export class ChatService {
+export class MessengerService {
 
   private url = 'http://localhost:8888';
   private socket;
@@ -18,15 +18,15 @@ export class ChatService {
 
   public getMessages() {
     return Observable.create((observer) => {
-      this.socket.on('visitor message', (data: ChatData) => {
-        this.sendMessage(data.visitor, 'Hello');
+      this.socket.on('visitor message', (data: Message) => {
+        this.sendMessage(data.userId, 'Hello');
         observer.next(data);
       })
     })
   }
 
-  public sendMessage(visitor: string, msg: string) {
-    this.socket.emit('reply', {visitor, msg})
+  public sendMessage(userId: string, text: string) {
+    this.socket.emit('reply', {userId, text})
   }
 
 }

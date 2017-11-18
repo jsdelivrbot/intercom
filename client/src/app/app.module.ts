@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import {ChatService} from "./chat.service";
+import {MessengerService} from "./core/messenger.service";
 
 
 @NgModule({
@@ -14,7 +14,7 @@ import {ChatService} from "./chat.service";
     BrowserModule
   ],
   providers: [
-    ChatService
+    MessengerService
   ],
   bootstrap: [AppComponent]
 })
