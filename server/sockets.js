@@ -6,7 +6,6 @@ module.exports = function(server) {
   const io = socketio(server);
 
   io.on('connection', (socket) => {
-    // console.log(socket)
     console.log(socket.id, 'connected');
 
     socket.on('admin-init', () => {
