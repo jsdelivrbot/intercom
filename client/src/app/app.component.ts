@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ChatService} from "./chat.service";
+import {ChatData} from "./core/chat-data.model";
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.chatService.getMessages()
-      .subscribe((data) => {
+      .subscribe((data: ChatData) => {
       console.log('got some data', data)
         if (this.visitors.indexOf(data.visitor) === -1) {
           this.visitors.push(data.visitor);
