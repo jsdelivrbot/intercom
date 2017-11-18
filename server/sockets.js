@@ -10,7 +10,7 @@ module.exports = function(server) {
 
     socket.on('admin-init', () => {
       adminId = socket.id;
-      console.log('got admin id', socket.id)
+      io.to(adminId).emit('admin id set', adminId);
     });
 
     socket.on('visitor message', (msg) => {

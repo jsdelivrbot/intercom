@@ -4,12 +4,19 @@ import { Message } from "./message.model";
 @Injectable()
 export class ChatLogService {
 
+  adminId: string;
   private logs: any = {};
 
   constructor() { }
 
   private createNewVisitor(id: string): void {
     this.logs[id] = <Message[]>[];
+  }
+
+  public setAdminId(id: string): void {
+    if (!this.adminId) {
+      this.adminId = id;
+    }
   }
 
   public getLog(id: string): Message[] {
