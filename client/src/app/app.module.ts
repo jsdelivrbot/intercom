@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {MessengerService} from './core/messenger.service';
 import {ConversationService} from './core/conversation.service';
 import { ChatBoxComponent } from './chat-box/chat-box.component';
+import {VisitorService} from './core/visitor.service';
 
 const appRoutes: Routes = [
   { path: 'conversation/:id', component: ChatBoxComponent },
@@ -22,7 +23,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     MessengerService,
-    ConversationService
+    ConversationService,
+    VisitorService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
-import { IMessage } from './message.model';
+import { Message } from './message.model';
 import {Observable} from 'rxjs/Observable';
 import {Conversation} from './conversation.model';
+import {Visitor} from './visitor.model';
 
 @Injectable()
 export class ConversationService {
 
   adminId: string;
-  private visitors: any = {};
+  public threads: any = {};
 
   constructor() { }
 
   private createNewVisitor(id: string): void {
-    this.visitors[id] = <Conversation>{
-      log: <IMessage[]>[],
+    this.threads[id] = <Conversation>{
+      visitor: new Visitor(id),
+      log: <Message[]>[],
       lastSeen: <number>null
     };
   }
@@ -24,26 +26,26 @@ export class ConversationService {
     }
   }
 
-  public getLog(visitorId: string): IMessage[] {
-    if (this.visitors.hasOwnProperty(visitorId)) {
-      return this.visitors[visitorId].log;
+  public getLog(visitorId: string): Message[] {
+    if (this.threads.hasOwnProperty(visitorId)) {
+      return this.threads[visitorId].log;
     }
   }
 
-  public addToLog(visitorId: string, message: IMessage): void {
-    if (!this.visitors.hasOwnProperty(visitorId)) {
+  public addToLog(visitorId: string, message: Message): void {
+    if (!this.threads.hasOwnProperty(visitorId)) {
       this.createNewVisitor(visitorId);
     }
-    this.visitors[visitorId].log.push(message);
+    this.threads[visitorId].log.push(message);
   }
 
   public getAllVisitors(): String[] {
-    return Object.keys(this.visitors);
+    return Object.keys(this.threads);
   }
 
   public setLastSeen(visitorId: string): void {
-    this.visitors[visitorId].lastSeen = this.visitors[visitorId].log.length - 1;
+    this.threads[visitorId].lastSeen = this.threads[visitorId].log.length - 1;
 
-    console.log('last seen idx', this.visitors[visitorId].lastSeen)
+    console.log('last seen idx', this.threads[visitorId].lastSeen)
   }
 }

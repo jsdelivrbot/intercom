@@ -21,8 +21,8 @@ export class MessengerService {
     });
 
     // listens for messages from visitors
-    this.socket.on('visitor message', (data: Message) => {
-      this.conversationService.addToLog(data.userId, data);
+    this.socket.on('visitor message', (message: Message) => {
+      this.conversationService.addToLog(message.userId, message);
     });
   }
 
