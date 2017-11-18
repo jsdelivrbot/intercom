@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {MessengerService} from "./core/messenger.service";
+import {ChatLogService} from "./core/chat-log.service";
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import {MessengerService} from "./core/messenger.service";
     BrowserModule
   ],
   providers: [
-    MessengerService
+    MessengerService,
+    ChatLogService
   ],
   bootstrap: [AppComponent]
 })

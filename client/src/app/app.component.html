@@ -1,4 +1,4 @@
 <div>
   Messages:
-  <div *ngFor="let message of messages">{{message  | json}}</div>
+  <div *ngFor="let visitor of chatLogService.getAllVisitors()">{{chatLogService.getLog(visitor)  | json}}</div>
 </div>

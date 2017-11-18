@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MessengerService} from "./core/messenger.service";
 import {Message} from "./core/message.model";
+import {ChatLogService} from "./core/chat-log.service";
 
 @Component({
   selector: 'app-root',
@@ -8,21 +9,14 @@ import {Message} from "./core/message.model";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
 
-  public messages = [];
-  public visitors = [];
-
-  constructor(private messengerService: MessengerService) { }
+  constructor(private messengerService: MessengerService, public chatLogService: ChatLogService) { }
 
   ngOnInit() {
     this.messengerService.getMessages()
       .subscribe((data: Message) => {
-      console.log('got some data', data)
-        if (this.visitors.indexOf(data.userId) === -1) {
-          this.visitors.push(data.userId);
-        }
-        this.messages.push(data);
+      console.log('got some data', data);
+        this.chatLogService.addMessage(data);
       })
   }
 }
