@@ -1,8 +1,15 @@
-<div>Admin is: {{chatLogService.adminId}}</div>
-<div>
-  <div *ngFor="let visitor of chatLogService.getAllVisitors()">
+<nav>Admin: {{chatLogService.adminId}}</nav>
+<div class="container">
+  <div id="chat-sidebar">
+    <div *ngFor="let visitor of chatLogService.getAllVisitors()">
 
-    <app-chat-box [visitorId]="visitor"></app-chat-box>
+      <div class="visitor-tab">{{visitor}}</div>
 
+    </div>
   </div>
+
+  <div id="chat-container">
+    hey
+  </div>
+
 </div>

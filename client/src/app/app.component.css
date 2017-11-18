@@ -1,0 +1,28 @@
+nav {
+  height: 30px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+#chat-sidebar {
+  height: calc(100vh - 30px);
+  width: 30vw;
+  background-color: peachpuff;
+  overflow: auto;
+}
+
+#chat-container {
+  height: calc(100vh - 30px);
+  width: 70vw;
+  background-color: aliceblue;
+  overflow: auto;
+}
+
+.visitor-tab {
+  height: 50px;
+  width: 100%;
+  border: 1px solid black;
+}
