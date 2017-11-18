@@ -13,11 +13,11 @@ export class AppComponent implements OnInit {
   constructor(private messengerService: MessengerService, public chatLogService: ChatLogService) { }
 
   ngOnInit() {
-    this.messengerService.getMessages()
-      .subscribe((data: Message) => {
-      console.log('got some data', data);
-        this.chatLogService.addMessage(data.userId, data);
-
-      })
+    // this.messengerService.getMessages()
+    //   .subscribe((data: Message) => {
+    //   console.log('got some data', data);
+    //     this.chatLogService.postMessage(data.userId, data);
+    //
+    //   })
   }
 }

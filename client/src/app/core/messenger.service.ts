@@ -18,18 +18,28 @@ export class MessengerService {
 
     this.socket.on('admin id set', (id: string) => {
       this.chatLogService.setAdminId(id);
+    });
+
+    this.socket.on('visitor message', (data: Message) => {
+      this.chatLogService.postMessage(data.userId, {userId: data.userId, text: data.text});
+
+      // TODO: this is placeholder
+      this.sendMessage(data.userId, 'Hello');
+      this.chatLogService.postMessage(data.userId, {userId: this.chatLogService.adminId, text: 'Hello'});
     })
   }
 
-  public getMessages() {
-    return Observable.create((observer) => {
-      this.socket.on('visitor message', (data: Message) => {
-        this.sendMessage(data.userId, 'Hello');
-        observer.next(data);
-        this.chatLogService.addMessage(data.userId, {userId: this.chatLogService.adminId, text: 'Hello'})
-      })
-    })
-  }
+  // public getMessages() {
+  //   return Observable.create((observer) => {
+  //     // this.socket.on('visitor message', (data: Message) => {
+  //     //   this.sendMessage(data.userId, 'Hello');
+  //     //
+  //     //   observer.next(data);
+  //     //
+  //     //   this.chatLogService.postMessage(data.userId, {userId: this.chatLogService.adminId, text: 'Hello'})
+  //     // })
+  //   })
+  // }
 
   public sendMessage(userId: string, text: string) {
     this.socket.emit('reply', {userId, text})

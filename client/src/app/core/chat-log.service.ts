@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Message } from "./message.model";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class ChatLogService {
@@ -19,14 +20,17 @@ export class ChatLogService {
     }
   }
 
-  public getLog(id: string): Message[] {
-    if (this.logs.hasOwnProperty(id)) {
-      return this.logs[id];
-    }
-    return [];
+  public getLog(id: string): Observable<Message[]> {
+    // return this.logs[id];
+    return Observable.create((observer) => {
+      if (this.logs.hasOwnProperty(id)) {
+        observer.next(this.logs[id]);
+      }
+    })
+
   }
 
-  public addMessage(visitorId: string, message: Message): void {
+  public postMessage(visitorId: string, message: Message): void {
     if (!this.logs.hasOwnProperty(visitorId)) {
       this.createNewVisitor(visitorId);
     }

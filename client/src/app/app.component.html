@@ -1,5 +1,8 @@
 <div>Admin is: {{chatLogService.adminId}}</div>
 <div>
-  Messages:
-  <div *ngFor="let visitor of chatLogService.getAllVisitors()">{{chatLogService.getLog(visitor)  | json}}</div>
+  <div *ngFor="let visitor of chatLogService.getAllVisitors()">
+
+    <app-chat-box [visitor]="visitor"></app-chat-box>
+
+  </div>
 </div>
