@@ -92,14 +92,12 @@ const input = document.createElement('input');
 input.id = 'input';
 chatContainer.appendChild(input);
 
-
 input.addEventListener('keypress', (val) => {
   if (event.keyCode === 13) {
     socket.emit('visitor message', input.value);
     createLineOfText(input.value, 'right');
     input.value = '';
   }
-
 });
 
 function createLineOfText(val, alignment) {

@@ -1,5 +1,6 @@
 import * as io from 'socket.io-client';
 import { Injectable } from '@angular/core';
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class ChatService {
@@ -10,12 +11,19 @@ export class ChatService {
   constructor() {
     this.socket = io(this.url);
     this.socket.emit('admin-init', 'admin initialized');
+  }
 
-    this.socket.on('visitor message', (data) => {
-      console.log(data.msg, data.visitor)
-      this.socket.emit('reply', {msg: 'acknowldeged', visitor: data.visitor})
+  public getMessages() {
+    return Observable.create((observer) => {
+      this.socket.on('visitor message', (data) => {
+        this.sendMessage(data);
+        observer.next(data);
+      })
     })
+  }
 
+  public sendMessage({visitor, msg}) {
+    this.socket.emit('reply', {msg, visitor})
   }
 
 }
