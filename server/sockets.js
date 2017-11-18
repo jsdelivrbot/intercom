@@ -1,5 +1,7 @@
 const socketio = require('socket.io');
 
+const Message = require('./Message');
+
 let adminId;
 
 module.exports = function(server) {
@@ -15,7 +17,8 @@ module.exports = function(server) {
 
     socket.on('visitor message', (msg) => {
       console.log(socket.id, msg);
-      io.to(adminId).emit('visitor message', {text: msg, userId: socket.id})
+      const message = new Message(socket.id, msg);
+      io.to(adminId).emit('visitor message', message)
     });
 
     socket.on('reply', (data) => {

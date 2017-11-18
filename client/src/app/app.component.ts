@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     // this.messengerService.getMessages()
-    //   .subscribe((data: Message) => {
+    //   .subscribe((data: IMessage) => {
     //   console.log('got some data', data);
     //     this.chatLogService.addToLog(data.userId, data);
     //

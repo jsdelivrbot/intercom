@@ -1,6 +1,6 @@
 import * as io from 'socket.io-client';
 import { Injectable } from '@angular/core';
-import {Message} from './message.model';
+import { Message } from './message.model';
 import {ConversationService} from './conversation.service';
 
 @Injectable()
@@ -22,24 +22,12 @@ export class MessengerService {
 
     // listens for messages from visitors
     this.socket.on('visitor message', (data: Message) => {
-      this.conversationService.addToLog(data.userId, {userId: data.userId, text: data.text});
+      this.conversationService.addToLog(data.userId, data);
     });
   }
 
-  // public getMessages() {
-  //   return Observable.create((observer) => {
-  //     // this.socket.on('visitorId message', (data: Message) => {
-  //     //   this.sendMessage(data.userId, 'Hello');
-  //     //
-  //     //   observer.next(data);
-  //     //
-  //     //   this.conversationService.addToLog(data.userId, {userId: this.conversationService.adminId, text: 'Hello'})
-  //     // })
-  //   })
-  // }
-
-  public sendMessage(userId: string, text: string) {
-    this.socket.emit('reply', {userId, text});
+  public sendMessage(msg: Message) {
+    this.socket.emit('reply', msg);
   }
 
 }

@@ -1,6 +1,6 @@
-import {Message} from './message.model';
+import {IMessage} from './message.model';
 
 export interface Conversation {
-  log: Message[];
+  log: IMessage[];
   lastSeen: number;
 }

@@ -1,6 +1,6 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
 import {ConversationService} from '../core/conversation.service';
-import {Message} from '../core/message.model';
+import {IMessage, Message} from '../core/message.model';
 import {Subscription} from 'rxjs/Subscription';
 import {MessengerService} from '../core/messenger.service';
 import {ActivatedRoute} from '@angular/router';
@@ -10,32 +10,43 @@ import {ActivatedRoute} from '@angular/router';
   templateUrl: './chat-box.component.html',
   styleUrls: ['./chat-box.component.css']
 })
-export class ChatBoxComponent implements OnInit {
+export class ChatBoxComponent implements OnInit, OnDestroy, OnChanges {
 
-  messages: Message[] = [];
+  messages: IMessage[] = [];
 
   visitorId: string;
 
-  constructor(public chatLogService: ConversationService, private messengerService: MessengerService, private route: ActivatedRoute) { }
+  constructor(public conversationService: ConversationService, private messengerService: MessengerService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.visitorId = params.id;
 
-      this.messages = this.chatLogService
+      this.messages = this.conversationService
         .getLog(params.id)
     });
   }
 
   userType(id) {
-    return id === this.chatLogService.adminId ? 'admin' : 'visitor';
+    return id === this.conversationService.adminId ? 'admin' : 'visitor';
   }
 
-  sendMessage(e) {
+  send(e) {
     if (e.keyCode === 13) {
-      this.messengerService.sendMessage(this.visitorId, e.target.value);
-      this.chatLogService.addToLog(this.visitorId, {userId: this.chatLogService.adminId, text: e.target.value});
+      const msg = new Message(this.conversationService.adminId, e.target.value);
+      console.log('msg', msg)
+      this.messengerService.sendMessage(msg);
+      this.conversationService.addToLog(this.visitorId, msg);
       e.target.value = '';
     }
+  }
+
+  ngOnChanges() {
+    console.log('on change')
+  }
+
+  ngOnDestroy() {
+    console.log('on destroy triggered?')
+    this.conversationService.setLastSeen(this.visitorId);
   }
 }

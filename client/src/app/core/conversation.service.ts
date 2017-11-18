@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Message } from './message.model';
+import { IMessage } from './message.model';
 import {Observable} from 'rxjs/Observable';
 import {Conversation} from './conversation.model';
 
@@ -13,7 +13,7 @@ export class ConversationService {
 
   private createNewVisitor(id: string): void {
     this.visitors[id] = <Conversation>{
-      log: <Message[]>[],
+      log: <IMessage[]>[],
       lastSeen: <number>null
     };
   }
@@ -24,19 +24,13 @@ export class ConversationService {
     }
   }
 
-  public getLog(visitorId: string): Message[] {
+  public getLog(visitorId: string): IMessage[] {
     if (this.visitors.hasOwnProperty(visitorId)) {
       return this.visitors[visitorId].log;
     }
-
-    // return Observable.create((observer) => {
-    //   if (this.logs.hasOwnProperty(id)) {
-    //     observer.next(this.logs[id]);
-    //   }
-    // });
   }
 
-  public addToLog(visitorId: string, message: Message): void {
+  public addToLog(visitorId: string, message: IMessage): void {
     if (!this.visitors.hasOwnProperty(visitorId)) {
       this.createNewVisitor(visitorId);
     }
@@ -45,5 +39,11 @@ export class ConversationService {
 
   public getAllVisitors(): String[] {
     return Object.keys(this.visitors);
+  }
+
+  public setLastSeen(visitorId: string): void {
+    this.visitors[visitorId].lastSeen = this.visitors[visitorId].log.length - 1;
+
+    console.log('last seen idx', this.visitors[visitorId].lastSeen)
   }
 }
