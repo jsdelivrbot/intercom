@@ -3,7 +3,7 @@ import {ConversationService} from '../core/conversation.service';
 import { Message } from '../core/models/message.model';
 import {Subscription} from 'rxjs/Subscription';
 import {SocketService} from '../core/socket.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-chat-box',
@@ -17,10 +17,16 @@ export class ChatBoxComponent implements OnInit, OnDestroy, OnChanges {
   visitorId: string;
   visitorName: string;
 
-  constructor(public conversationService: ConversationService, private socketService: SocketService, private route: ActivatedRoute) { }
+  constructor(public conversationService: ConversationService, private socketService: SocketService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
+      // TODO: find out if there's a better way to do this
+      if (!this.conversationService.threads.hasOwnProperty(params.id)) {
+        this.router.navigateByUrl('/');
+        return;
+      }
+
       this.visitorId = params.id;
       console.log(this.conversationService.threads);
       this.visitorName = this.conversationService.threads[this.visitorId].visitor.name;
