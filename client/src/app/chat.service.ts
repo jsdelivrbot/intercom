@@ -10,6 +10,8 @@ export class ChatService {
 
   constructor() {
     this.socket = io(this.url);
+
+    // this tells the server which socket ID belongs to the admin
     this.socket.emit('admin-init', 'admin initialized');
   }
 
