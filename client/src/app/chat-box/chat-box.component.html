@@ -1,0 +1,8 @@
+<div class="chat-box">
+  <p>{{visitorId}}</p>
+  <div *ngFor="let message of messages">
+    <div [class]="userType(message.userId)">{{message.text}}</div>
+  </div>
+
+  <input (keydown)="sendMessage($event)">
+</div>

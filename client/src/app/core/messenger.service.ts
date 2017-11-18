@@ -20,23 +20,19 @@ export class MessengerService {
       this.chatLogService.setAdminId(id);
     });
 
-    this.socket.on('visitor message', (data: Message) => {
-      this.chatLogService.postMessage(data.userId, {userId: data.userId, text: data.text});
-
-      // TODO: this is placeholder
-      this.sendMessage(data.userId, 'Hello');
-      this.chatLogService.postMessage(data.userId, {userId: this.chatLogService.adminId, text: 'Hello'});
+    this.socket.on('visitorId message', (data: Message) => {
+      this.chatLogService.addToLog(data.userId, {userId: data.userId, text: data.text});
     })
   }
 
   // public getMessages() {
   //   return Observable.create((observer) => {
-  //     // this.socket.on('visitor message', (data: Message) => {
+  //     // this.socket.on('visitorId message', (data: Message) => {
   //     //   this.sendMessage(data.userId, 'Hello');
   //     //
   //     //   observer.next(data);
   //     //
-  //     //   this.chatLogService.postMessage(data.userId, {userId: this.chatLogService.adminId, text: 'Hello'})
+  //     //   this.chatLogService.addToLog(data.userId, {userId: this.chatLogService.adminId, text: 'Hello'})
   //     // })
   //   })
   // }

@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
     // this.messengerService.getMessages()
     //   .subscribe((data: Message) => {
     //   console.log('got some data', data);
-    //     this.chatLogService.postMessage(data.userId, data);
+    //     this.chatLogService.addToLog(data.userId, data);
     //
     //   })
   }

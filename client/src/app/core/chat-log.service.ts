@@ -30,7 +30,7 @@ export class ChatLogService {
 
   }
 
-  public postMessage(visitorId: string, message: Message): void {
+  public addToLog(visitorId: string, message: Message): void {
     if (!this.logs.hasOwnProperty(visitorId)) {
       this.createNewVisitor(visitorId);
     }
