@@ -44,6 +44,5 @@ function createDomElement(type, parent) {
 }
 
 socket.on('reply', (msg) => {
-  console.log('git repo', msg)
   createMessage(msg, 'admin');
 });
