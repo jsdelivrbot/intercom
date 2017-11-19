@@ -4,6 +4,20 @@ import './style.css';
 
 const socket = io('http://localhost:8888');
 
+const icon = createDomElement('div', document.body);
+icon.id = 'chat-icon';
+icon.addEventListener('click', (e) => {
+  e.preventDefault();
+  toggleChatWidget();
+});
+
+
+function toggleChatWidget() {
+  const currentVisibility = chatWidget.style.visibility;
+  chatWidget.style.visibility = currentVisibility === 'visible' ? 'hidden' : 'visible';
+  input.setAttribute('autofocus', '');
+}
+
 const chatWidget = createDomElement('div', document.body);
 chatWidget.id = 'chat-widget';
 
@@ -15,14 +29,20 @@ const chatBox = createDomElement('div', chatWidget);
 chatBox.id = 'chat-box';
 
 const input = createDomElement('input', chatWidget);
-input.setAttribute('autofocus', '');
-input.addEventListener('keypress', (event) => {
-  if (event.keyCode === 13) {
+input.addEventListener('keypress', (e) => {
+  if (e.keyCode === 13) {
+    e.preventDefault();
     socket.emit('visitor message', input.value);
     createMessage(input.value, 'visitor');
     input.value = '';
   }
 });
+
+function createDomElement(type, parent) {
+  const el = document.createElement(type);
+  parent.appendChild(el);
+  return el;
+}
 
 function createMessage(val, sender) {
   const message = createDomElement('div', chatBox);
@@ -35,12 +55,6 @@ function createMessage(val, sender) {
   const bubble = createDomElement('div', message);
   bubble.classList.add('bubble');
   bubble.innerHTML = val;
-}
-
-function createDomElement(type, parent) {
-  const el = document.createElement(type);
-  parent.appendChild(el);
-  return el;
 }
 
 socket.on('reply', (msg) => {
