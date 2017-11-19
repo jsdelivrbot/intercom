@@ -46,11 +46,13 @@ export class ChatBoxComponent implements OnInit {
       const msg = new Message(this.userService.admin, e.target.value);
 
       // send new message to visitor
-      this.socketService.sendMessage(msg);
+      this.socketService.sendMessage(this.visitor.id, msg);
 
       // add new message to the conversation log
       this.conversationService.addNewMessage(this.visitor.id, msg);
       e.target.value = '';
+
+      // Scroll chat window to bottom
       this.scrollToBottom();
     }
   }

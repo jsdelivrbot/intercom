@@ -25,13 +25,17 @@ export class SocketService {
 
     // listens for messages from visitors
     this.socket.on('visitor message', (message: Message) => {
-      console.log('got msg')
       this.conversationService.addNewMessage(message.userId, message);
     });
   }
 
-  public sendMessage(msg: Message) {
-    this.socket.emit('reply', msg);
+  public sendMessage(visitorId: string, msg: Message) {
+    const data = {
+      userId: visitorId,
+      text: msg.text
+    };
+
+    this.socket.emit('reply', data);
   }
 
 }
