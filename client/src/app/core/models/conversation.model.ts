@@ -1,23 +1,23 @@
-import {IMessage} from './message.model';
+import {IMessage, Message} from './message.model';
 import {User} from './user.model';
 
 export interface IConversation {
   id: string;
   visitor: User;
   log: IMessage[];
-  latestTime: number;
+  latestMessage: Message;
 }
 
 export class Conversation implements IConversation {
   id: string;
   visitor: User;
   log: IMessage[];
-  latestTime: number;
+  latestMessage: Message;
 
-  constructor(visitorId) {
-    this.id = visitorId;
-    this.visitor = new User(visitorId);
+  constructor(visitor: User) {
+    this.id = visitor.id;
+    this.visitor = visitor;
     this.log = [];
-    this.latestTime = 0;
+    this.latestMessage = null;
   }
 }

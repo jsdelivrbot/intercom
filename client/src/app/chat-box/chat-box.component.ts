@@ -50,7 +50,7 @@ export class ChatBoxComponent implements OnInit, OnDestroy, OnChanges {
       this.socketService.sendMessage(msg);
 
       // add new message to the conversation log
-      this.conversationService.addMessageToLog(this.visitorId, msg);
+      this.conversationService.addNewMessage(this.visitorId, msg);
       e.target.value = '';
     }
   }
