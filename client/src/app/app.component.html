@@ -1,5 +1,4 @@
-<nav><a routerLink="/">Admin: {{userService.admin | json}}</a></nav>
-
+<app-navbar></app-navbar>
 <div class="container">
   <div id="chat-sidebar">
     <div *ngFor="let convo of (conversations | sortByLatest)">
