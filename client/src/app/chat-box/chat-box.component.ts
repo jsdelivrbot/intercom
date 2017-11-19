@@ -4,6 +4,7 @@ import {Message} from '../core/models/message.model';
 import {SocketService} from '../core/socket.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../core/user.service';
+import {User} from '../core/models/user.model';
 
 @Component({
   selector: 'app-chat-box',
@@ -14,15 +15,13 @@ export class ChatBoxComponent implements OnInit {
 
   messages: Message[] = [];
 
-  visitorId: string;
-  visitorName: string;
+  visitor: User;
 
   constructor(public conversationService: ConversationService, public userService: UserService, private socketService: SocketService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.visitorId = params.id;
-      const currConvo = this.conversationService.getConversation(this.visitorId);
+      const currConvo = this.conversationService.getConversation(params.id);
 
       // If url contains invalid user ID
       if (currConvo === null) {
@@ -30,7 +29,7 @@ export class ChatBoxComponent implements OnInit {
         return;
       }
 
-      this.visitorName = currConvo.visitor.alias;
+      this.visitor = currConvo.visitor;
       this.messages = currConvo.log;
     });
   }
@@ -45,7 +44,7 @@ export class ChatBoxComponent implements OnInit {
       this.socketService.sendMessage(msg);
 
       // add new message to the conversation log
-      this.conversationService.addNewMessage(this.visitorId, msg);
+      this.conversationService.addNewMessage(this.visitor.id, msg);
       e.target.value = '';
     }
   }

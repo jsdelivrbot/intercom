@@ -1,17 +1,36 @@
 .message {
+  display: flex;
+  padding: 5px;
+}
+
+.admin {
+  flex-direction: row-reverse;
+}
+
+.visitor {
+  flex-direction: row;
+}
+
+.admin > .avatar {
+  margin-left: 15px;
+}
+
+.visitor > .avatar {
+  margin-right: 15px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #D8D9DE;
+  border-radius: 5px;
+}
+
+.bubble {
   width: auto;
   border: 1px solid #D8D9DE;
-  margin: 5px;
   padding: 10px;
-  font-size: 14px;
   background-color: white;
   border-radius: 5px;
 }
 
-.admin {
-  text-align: right;
-}
-
-.visitor {
-  text-align: left;
-}

@@ -1,9 +1,10 @@
 <div class="chat-box">
-  <h2>{{visitorName}}</h2>
+  <h2>{{visitor.alias}}</h2>
 
   <div *ngFor="let message of messages">
-    <app-message [message]="message"></app-message>
+    <app-message [message]="message"
+    [visitor]="visitor"></app-message>
   </div>
 </div>
 
-<input (keydown)="send($event)">
+<input (keydown)="send($event)" autofocus>

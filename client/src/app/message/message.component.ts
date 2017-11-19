@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Message} from '../core/models/message.model';
+import {User} from '../core/models/user.model';
 
 @Component({
   selector: 'app-message',
@@ -9,13 +10,24 @@ import {Message} from '../core/models/message.model';
 export class MessageComponent implements OnInit {
 
   @Input() message: Message;
+  @Input() visitor: User;
+
+  userType: string;
+  avatarColor: string;
 
   constructor() { }
 
   ngOnInit() {
+    this.userType = this.getUserType(this.message.userAlias);
+    this.avatarColor = this.getAvatarColor();
   }
 
-  userType(alias: string): string {
+  private getUserType(alias: string): string {
     return alias === 'You' ? 'admin' : 'visitor';
+  }
+
+  private getAvatarColor(): string {
+    console.log(this.userType)
+    return this.userType === 'admin' ? '#584848' : this.visitor.avatarColor
   }
 }

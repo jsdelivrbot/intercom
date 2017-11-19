@@ -1,4 +1,8 @@
 <div class="message"
-     [ngClass]="userType(message.userAlias)">
-  {{message.text}}
+     [ngClass]="userType">
+  <div class="avatar"
+       [ngStyle]="{'background-color': avatarColor}"></div>
+  <div class="bubble">
+    {{message.text}}
+  </div>
 </div>
