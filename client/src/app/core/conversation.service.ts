@@ -7,7 +7,6 @@ import {User} from './models/user.model';
 @Injectable()
 export class ConversationService {
 
-  adminId: string;
   public threads: any = {};
 
   constructor() { }
@@ -18,12 +17,6 @@ export class ConversationService {
       log: <Message[]>[],
       latestTime: <number>null
     };
-  }
-
-  public setAdminId(id: string): void {
-    if (!this.adminId) {
-      this.adminId = id;
-    }
   }
 
   public getLog(visitorId: string): Message[] {

@@ -1,10 +1,18 @@
 import { Injectable } from '@angular/core';
+import {User} from './models/user.model';
 
 @Injectable()
 export class UserService {
 
+  admin: User;
+
   constructor() { }
 
-  // TODO: Put stuff in here...
+  setAdmin(id: string) {
+    if (!this.admin) {
+      this.admin = new User(id, 'You');
+      console.log('admin is', this.admin)
+    }
+  }
 
 }

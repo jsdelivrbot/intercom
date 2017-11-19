@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SocketService} from './core/socket.service';
 import {ConversationService} from './core/conversation.service';
+import {UserService} from './core/user.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import {ConversationService} from './core/conversation.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private socketService: SocketService, public chatLogService: ConversationService) { }
+  constructor(private socketService: SocketService, public chatLogService: ConversationService, public userService: UserService) { }
 
   ngOnInit() {
     // this.messengerService.getMessages()

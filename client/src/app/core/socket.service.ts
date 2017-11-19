@@ -2,6 +2,7 @@ import * as io from 'socket.io-client';
 import { Injectable } from '@angular/core';
 import { Message } from './models/message.model';
 import {ConversationService} from './conversation.service';
+import {UserService} from './user.service';
 
 @Injectable()
 export class SocketService {
@@ -9,7 +10,7 @@ export class SocketService {
   private url = 'http://localhost:8888';
   private socket;
 
-  constructor(private conversationService: ConversationService) {
+  constructor(private conversationService: ConversationService, private userService: UserService) {
     this.socket = io(this.url);
 
     // this tells the server which socket ID belongs to the admin
@@ -17,7 +18,7 @@ export class SocketService {
 
     // set admin ID within the app
     this.socket.on('admin id set', (id: string) => {
-      this.conversationService.setAdminId(id);
+      this.userService.setAdmin(id);
     });
 
     // listens for messages from visitors

@@ -4,6 +4,7 @@ import { Message } from '../core/models/message.model';
 import {Subscription} from 'rxjs/Subscription';
 import {SocketService} from '../core/socket.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {UserService} from '../core/user.service';
 
 @Component({
   selector: 'app-chat-box',
@@ -17,7 +18,7 @@ export class ChatBoxComponent implements OnInit, OnDestroy, OnChanges {
   visitorId: string;
   visitorName: string;
 
-  constructor(public conversationService: ConversationService, private socketService: SocketService, private route: ActivatedRoute, private router: Router) { }
+  constructor(public conversationService: ConversationService, public userService: UserService, private socketService: SocketService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -37,14 +38,14 @@ export class ChatBoxComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   userType(id) {
-    return id === this.conversationService.adminId ? 'admin' : 'visitor';
+    return id === this.userService.admin.id ? 'admin' : 'visitor';
   }
 
   send(e) {
     if (e.keyCode === 13) {
       e.preventDefault();
 
-      const msg = new Message(this.conversationService.adminId, e.target.value);
+      const msg = new Message(this.userService.admin.id, e.target.value);
 
       // send new message to visitor
       this.socketService.sendMessage(msg);

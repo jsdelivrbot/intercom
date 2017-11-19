@@ -11,9 +11,9 @@ export class User implements IUser {
   alias: string;
   avatarColor: string;
 
-  constructor(id) {
+  constructor(id, alias?) {
     this.id = id;
-    this.alias = this.getRandomName();
+    this.alias = alias || this.getRandomName();
     this.avatarColor = '#' + (Math.random()*0xFFFFFF<<0).toString(16);
   }
 
