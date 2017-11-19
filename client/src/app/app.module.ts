@@ -7,7 +7,7 @@ import {SocketService} from './core/socket.service';
 import {ConversationService} from './core/conversation.service';
 import { ChatBoxComponent } from './chat-box/chat-box.component';
 import {UserService} from './core/user.service';
-import { SortByLatestPipe } from './core/sort-by-latest.pipe';
+import { SortByLatestPipe } from './core/pipes/sort-by-latest.pipe';
 
 const appRoutes: Routes = [
   { path: 'conversation/:id', component: ChatBoxComponent },

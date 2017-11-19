@@ -1,7 +1,6 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ConversationService} from '../core/conversation.service';
-import { Message } from '../core/models/message.model';
-import {Subscription} from 'rxjs/Subscription';
+import {Message} from '../core/models/message.model';
 import {SocketService} from '../core/socket.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../core/user.service';
@@ -11,7 +10,7 @@ import {UserService} from '../core/user.service';
   templateUrl: './chat-box.component.html',
   styleUrls: ['./chat-box.component.css']
 })
-export class ChatBoxComponent implements OnInit, OnDestroy, OnChanges {
+export class ChatBoxComponent implements OnInit {
 
   messages: Message[] = [];
 
@@ -44,7 +43,7 @@ export class ChatBoxComponent implements OnInit, OnDestroy, OnChanges {
     if (e.keyCode === 13) {
       e.preventDefault();
 
-      const msg = new Message(this.userService.admin.id, e.target.value);
+      const msg = new Message(this.userService.admin, e.target.value);
 
       // send new message to visitor
       this.socketService.sendMessage(msg);
@@ -53,14 +52,5 @@ export class ChatBoxComponent implements OnInit, OnDestroy, OnChanges {
       this.conversationService.addNewMessage(this.visitorId, msg);
       e.target.value = '';
     }
-  }
-
-  ngOnChanges() {
-    console.log('on change')
-  }
-
-  ngOnDestroy() {
-    console.log('on destroy triggered?')
-    // this.conversationService.setLastSeen(this.visitorId);
   }
 }

@@ -18,8 +18,8 @@ export class User implements IUser {
   }
 
   getRandomName(): string {
-    const adjectives = ['Bouncing', 'Exuberant', 'Formidable', 'Blue', 'Happy', 'Amazing', 'Boring', 'Squishy'];
-    const nouns = ['Balloon', 'Hat', 'Giraffe', 'Leopard', 'Axe', 'Acrobat', 'Gorilla'];
+    const adjectives = ['Bouncing', 'Exuberant', 'Formidable', 'Blue', 'Happy', 'Amazing', 'Opulent', 'Stylish', 'Squishy'];
+    const nouns = ['Balloon', 'Hat', 'Giraffe', 'Leopard', 'Axe', 'Apricot', 'Oak', 'Gorilla'];
 
     const adjIdx = Math.floor(Math.random() * adjectives.length);
     const nounIdx = Math.floor(Math.random() * nouns.length);
