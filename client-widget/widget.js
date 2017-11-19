@@ -1,21 +1,20 @@
 // client-side socket.io
 import io from './lib/socket.io.js';
-// styles
 import './style.css';
 
 const socket = io('http://localhost:8888');
 
-const chatContainer = document.createElement('div');
-chatContainer.id = 'chat-container';
-document.body.appendChild(chatContainer);
+const chatWidget = createDomElement('div', document.body);
+chatWidget.id = 'chat-widget';
 
-const chatBox = document.createElement('div');
+const header = createDomElement('div', chatWidget);
+header.id = 'header';
+header.innerHTML = 'Let\'s Chat';
+
+const chatBox = createDomElement('div', chatWidget);
 chatBox.id = 'chat-box';
-chatContainer.appendChild(chatBox);
 
-const input = document.createElement('input');
-input.id = 'input';
-chatContainer.appendChild(input);
+const input = createDomElement('input', chatWidget);
 
 input.addEventListener('keypress', (event) => {
   if (event.keyCode === 13) {
@@ -26,13 +25,20 @@ input.addEventListener('keypress', (event) => {
 });
 
 function createLineOfText(val, alignment) {
-  const line = document.createElement('div');
+  const line = createDomElement('div', chatBox);
   line.innerHTML = val;
-  line.style.margin = '0px 5px';
+  line.classList.add('message');
   line.style.textAlign = alignment;
   chatBox.appendChild(line)
 }
 
+function createDomElement(type, parent) {
+  const el = document.createElement(type);
+  parent.appendChild(el);
+  return el;
+}
+
 socket.on('reply', (msg) => {
+  console.log('git repo', msg)
   createLineOfText(msg, 'left');
 });
