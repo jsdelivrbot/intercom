@@ -1,12 +1,6 @@
-#convo-list {
-  height: 100%;
-  width: 30vw;
-  overflow: auto;
-}
-
 .tab {
   display: block;
-  height: 50px;
+  height: 70px;
   width: auto;
   border-bottom: 1px solid #D8D9DE;
   padding: 10px;

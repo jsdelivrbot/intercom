@@ -1,13 +1,22 @@
 .container {
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 30px);
+  height: calc(100vh - 40px);
+}
+
+#convo-container {
+  height: 100%;
+  width: 30vw;
+  overflow: auto;
+  border-right: 1px solid #D8D9DE;
+  /*background-color: cadetblue;*/
 }
 
 #chat-container {
+  height: 100%;
   flex-grow: 1;
-  background-color: aliceblue;
   overflow: hidden;
+  background-color: #eef1f6;
 }
 
 
