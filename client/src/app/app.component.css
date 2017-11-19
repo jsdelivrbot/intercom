@@ -1,17 +1,6 @@
-nav {
-  height: 30px;
-}
-
 .container {
   display: flex;
   flex-direction: row;
-}
-
-#chat-sidebar {
-  height: calc(100vh - 30px);
-  width: 30vw;
-  background-color: peachpuff;
-  overflow: auto;
 }
 
 #chat-container {
@@ -21,24 +10,6 @@ nav {
   overflow: hidden;
 }
 
-.visitor-tab {
-  display: block;
-  height: 50px;
-  width: 100%;
-  border: 1px solid black;
-  padding: 10px;
-}
 
-.is-active {
-  background-color: cadetblue;
-}
 
-.unread {
-  width: 10px;
-  height: 10px;
-  display: inline-block;
-  background-color: red;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-}
+

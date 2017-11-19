@@ -1,0 +1,29 @@
+#list {
+  height: calc(100vh - 30px);
+  width: 30vw;
+  /*background-color: peachpuff;*/
+  overflow: auto;
+}
+
+.visitor-tab {
+  display: block;
+  height: 50px;
+  width: auto;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+  padding: 10px;
+}
+
+.visitor-tab.is-active {
+  background-color: #ccc;
+}
+
+.unread {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  background-color: red;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}

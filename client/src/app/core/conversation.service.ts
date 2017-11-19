@@ -37,11 +37,16 @@ export class ConversationService {
       conv = this.createConversation(id)
     }
 
+    console.log('adding new mesg')
+
     // Update the message with the relevant user alias
     message.userAlias = (message.userId === id) ? conv.visitor.alias : this.userService.admin.alias;
 
     // Add the message to the conversation
     conv.log.push(message);
     conv.latestMessage = message;
+
+    console.log('adding new mesg', conv)
+
   }
 }

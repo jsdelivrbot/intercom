@@ -13,6 +13,8 @@ export class SocketService {
   constructor(private conversationService: ConversationService, private userService: UserService) {
     this.socket = io(this.url);
 
+    console.log('optned socket');
+
     // this tells the server which socket ID belongs to the admin
     this.socket.emit('admin-init', 'admin initialized');
 
@@ -23,6 +25,7 @@ export class SocketService {
 
     // listens for messages from visitors
     this.socket.on('visitor message', (message: Message) => {
+      console.log('got msg')
       this.conversationService.addNewMessage(message.userId, message);
     });
   }

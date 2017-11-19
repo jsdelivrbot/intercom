@@ -1,20 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {SocketService} from './core/socket.service';
-import {ConversationService} from './core/conversation.service';
-import {UserService} from './core/user.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-  conversations;
-
-  constructor(private socketService: SocketService, public conversationService: ConversationService, public userService: UserService) { }
-
-  ngOnInit() {
-    this.conversations = this.conversationService.getAllConversations();
-  }
+  // need to inject socket service here so sockets can open
+  constructor(private socketService: SocketService) { }
 }

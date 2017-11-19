@@ -1,22 +1,7 @@
 <app-navbar></app-navbar>
 <div class="container">
-  <div id="chat-sidebar">
-    <div *ngFor="let convo of (conversations | sortByLatest)">
 
-      <a class="visitor-tab"
-         routerLink="/conversation/{{convo.visitor.id}}"
-         routerLinkActive="is-active">
-
-        <!--<div class="unread"></div>-->
-        {{convo.visitor.alias}}
-
-        <!-- TODO: This is garbage -->
-        <p style="font-style: italic">{{convo.latestMessage.userAlias}}: {{convo.latestMessage.text}}</p>
-      </a>
-
-    </div>
-  </div>
-
+  <app-conversation-list></app-conversation-list>
   <div id="chat-container">
     <router-outlet></router-outlet>
   </div>
