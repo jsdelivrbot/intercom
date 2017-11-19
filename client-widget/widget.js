@@ -15,21 +15,26 @@ const chatBox = createDomElement('div', chatWidget);
 chatBox.id = 'chat-box';
 
 const input = createDomElement('input', chatWidget);
-
+input.setAttribute('autofocus', '');
 input.addEventListener('keypress', (event) => {
   if (event.keyCode === 13) {
     socket.emit('visitor message', input.value);
-    createLineOfText(input.value, 'right');
+    createMessage(input.value, 'visitor');
     input.value = '';
   }
 });
 
-function createLineOfText(val, alignment) {
-  const line = createDomElement('div', chatBox);
-  line.innerHTML = val;
-  line.classList.add('message');
-  line.style.textAlign = alignment;
-  chatBox.appendChild(line)
+function createMessage(val, sender) {
+  const message = createDomElement('div', chatBox);
+  message.classList.add('message');
+  message.classList.add(sender);
+
+  const avatar = createDomElement('div', message);
+  avatar.classList.add('avatar');
+
+  const bubble = createDomElement('div', message);
+  bubble.classList.add('bubble');
+  bubble.innerHTML = val;
 }
 
 function createDomElement(type, parent) {
@@ -40,5 +45,5 @@ function createDomElement(type, parent) {
 
 socket.on('reply', (msg) => {
   console.log('git repo', msg)
-  createLineOfText(msg, 'left');
+  createMessage(msg, 'admin');
 });

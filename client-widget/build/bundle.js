@@ -90,21 +90,26 @@ const chatBox = createDomElement('div', chatWidget);
 chatBox.id = 'chat-box';
 
 const input = createDomElement('input', chatWidget);
-
+input.setAttribute('autofocus', '');
 input.addEventListener('keypress', (event) => {
   if (event.keyCode === 13) {
     socket.emit('visitor message', input.value);
-    createLineOfText(input.value, 'right');
+    createMessage(input.value, 'visitor');
     input.value = '';
   }
 });
 
-function createLineOfText(val, alignment) {
-  const line = createDomElement('div', chatBox);
-  line.innerHTML = val;
-  line.classList.add('message');
-  line.style.textAlign = alignment;
-  chatBox.appendChild(line)
+function createMessage(val, sender) {
+  const message = createDomElement('div', chatBox);
+  message.classList.add('message');
+  message.classList.add(sender);
+
+  const avatar = createDomElement('div', message);
+  avatar.classList.add('avatar');
+
+  const bubble = createDomElement('div', message);
+  bubble.classList.add('bubble');
+  bubble.innerHTML = val;
 }
 
 function createDomElement(type, parent) {
@@ -115,7 +120,7 @@ function createDomElement(type, parent) {
 
 socket.on('reply', (msg) => {
   console.log('git repo', msg)
-  createLineOfText(msg, 'left');
+  createMessage(msg, 'admin');
 });
 
 
@@ -167,7 +172,7 @@ exports = module.exports = __webpack_require__(4)(undefined);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700);", ""]);
 
 // module
-exports.push([module.i, "/* resets */\n#chat-widget > * {\n    vertical-align: baseline;\n    font-family: 'Open Sans', sans-serif;\n    font-size: 14px;\n    border: 0 none;\n    outline: 0;\n    padding: 0;\n    margin: 0;\n    box-sizing: border-box;\n}\n\n#chat-widget {\n    width: 300px;\n    height: 400px;\n    /*border: 1px solid #393B45;*/\n    border-radius: 5px;\n    box-shadow: 5px 5px 25px #393B45;\n    position: fixed;\n    bottom: 15px;\n    right: 15px;\n    overflow: scroll;\n    background-color: #eef1f6;\n}\n\n#chat-widget > #header {\n    height: 40px;\n    width: 100%;\n    padding: 10px;\n    background-color: #6E7889;\n    color: #D8D9DE;\n}\n\n#chat-widget > #chat-box {\n    width: 200px;\n    height: 280px;\n    overflow: scroll;\n}\n\n#chat-box > .message {\n    background-color: white;\n    border: 1px solid black;\n    margin: 0px 5px;\n}\n\n#chat-widget > input {\n    width: 100%;\n    height: 30px;\n    padding: 5px;\n    position: absolute;\n    bottom: 0;\n}", ""]);
+exports.push([module.i, "/* resets */\n#chat-widget > * {\n    vertical-align: baseline;\n    font-family: 'Open Sans', sans-serif;\n    font-size: 12px;\n    border: 0 none;\n    outline: 0;\n    padding: 0;\n    margin: 0;\n    box-sizing: border-box;\n}\n\n#chat-widget {\n    width: 300px;\n    height: 400px;\n    /*border: 1px solid #393B45;*/\n    border-radius: 5px;\n    box-shadow: 5px 5px 25px #393B45;\n    position: fixed;\n    bottom: 15px;\n    right: 15px;\n    overflow: scroll;\n    background-color: #eef1f6;\n}\n\n#chat-widget > #header {\n    height: 40px;\n    width: 100%;\n    padding: 10px;\n    background-color: #6E7889;\n    color: #D8D9DE;\n}\n\n#chat-widget > #chat-box {\n    width: 100%;\n    height: 330px;\n    overflow: scroll;\n}\n\n#chat-box > .message {\n    display: flex;\n    padding: 3px;\n    margin: 5px;\n}\n\n.message.admin {\n    flex-direction: row;\n}\n\n.message.visitor {\n    flex-direction: row-reverse;\n}\n\n.message > .avatar {\n    width: 30px;\n    height: 30px;\n    border: 1px solid #D8D9DE;\n    border-radius: 5px;\n}\n\n.visitor > .avatar {\n    margin-left: 10px;\n    background-color: #6E7889;\n}\n\n.admin > .avatar {\n    margin-right: 10px;\n    background-color: #584848;\n}\n\n.message > .bubble {\n    border: 1px solid #D8D9DE;\n    padding: 7px;\n    background-color: white;\n    border-radius: 5px;\n}\n\n#chat-widget > input {\n    width: 100%;\n    height: 30px;\n    padding: 5px;\n    position: absolute;\n    bottom: 0;\n}", ""]);
 
 // exports
 
