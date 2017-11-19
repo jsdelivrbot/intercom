@@ -35,10 +35,6 @@ export class ChatBoxComponent implements OnInit {
     });
   }
 
-  userType(id) {
-    return id === this.userService.admin.id ? 'admin' : 'visitor';
-  }
-
   send(e) {
     if (e.keyCode === 13) {
       e.preventDefault();

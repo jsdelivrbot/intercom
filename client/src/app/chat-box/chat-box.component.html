@@ -2,10 +2,7 @@
   <h2>{{visitorName}}</h2>
 
   <div *ngFor="let message of messages">
-    <div class="message"
-         [ngClass]="userType(message.userId)">
-      {{message.text}}
-    </div>
+    <app-message [message]="message"></app-message>
   </div>
 </div>
 

@@ -10,6 +10,7 @@ import {UserService} from './core/user.service';
 import { SortByLatestPipe } from './core/pipes/sort-by-latest.pipe';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ConversationListComponent } from './conversation-list/conversation-list.component';
+import { MessageComponent } from './message/message.component';
 
 const appRoutes: Routes = [
   { path: 'conversation/:id', component: ChatBoxComponent },
@@ -21,7 +22,8 @@ const appRoutes: Routes = [
     ChatBoxComponent,
     SortByLatestPipe,
     NavbarComponent,
-    ConversationListComponent
+    ConversationListComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
