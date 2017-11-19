@@ -23,7 +23,7 @@ export class SocketService {
 
     // listens for messages from visitors
     this.socket.on('visitor message', (message: Message) => {
-      this.conversationService.addToLog(message.userId, message);
+      this.conversationService.addMessageToLog(message.userId, message);
     });
   }
 

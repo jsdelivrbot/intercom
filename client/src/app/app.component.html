@@ -2,7 +2,7 @@
 
 <div class="container">
   <div id="chat-sidebar">
-    <div *ngFor="let convo of conversations">
+    <div *ngFor="let convo of (conversations | sortByLatest)">
 
       <a class="visitor-tab"
          routerLink="/conversation/{{convo.visitor.id}}"

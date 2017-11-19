@@ -28,7 +28,7 @@ export class ConversationService {
     return found.length > 0 ? found[0] : null;
   }
 
-  public addToLog(id: string, message: Message): void {
+  public addMessageToLog(id: string, message: Message): void {
     let currConvo = this.getConversation(id);
     if (currConvo === null) {
       currConvo = this.createConversation(id)
@@ -36,7 +36,5 @@ export class ConversationService {
 
     currConvo.log.push(message);
     currConvo.latestTime = message.timestamp;
-    console.log(message.timestamp);
-    console.log('set message timestamp', currConvo.visitor.alias, currConvo.latestTime = message.timestamp)
   }
 }
