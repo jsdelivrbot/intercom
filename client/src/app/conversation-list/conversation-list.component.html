@@ -1,14 +1,13 @@
-<div id="list">
+<div id="convo-list">
   <div *ngFor="let convo of (conversations | sortByLatest)">
 
-    <a class="visitor-tab"
+    <a class="tab"
        routerLink="/conversation/{{convo.visitor.id}}"
        routerLinkActive="is-active">
 
-      {{convo.visitor.alias}}
+      <h4>{{convo.visitor.alias}}</h4>
 
-      <!-- TODO: This is garbage -->
-      <p style="font-style: italic">{{convo.latestMessage.userAlias}}: {{convo.latestMessage.text}}</p>
+      <p class="last-message">{{convo.latestMessage.userAlias}}: {{convo.latestMessage.text}}</p>
     </a>
 
   </div>

@@ -1,29 +1,21 @@
-#list {
-  height: calc(100vh - 30px);
+#convo-list {
+  height: 100%;
   width: 30vw;
-  /*background-color: peachpuff;*/
   overflow: auto;
 }
 
-.visitor-tab {
+.tab {
   display: block;
   height: 50px;
   width: auto;
-  border-top: 1px solid #aaa;
-  border-bottom: 1px solid #aaa;
+  border-bottom: 1px solid #D8D9DE;
   padding: 10px;
 }
 
-.visitor-tab.is-active {
-  background-color: #ccc;
+.tab.is-active {
+  background-color: #D8D9DE;
 }
 
-.unread {
-  width: 10px;
-  height: 10px;
-  display: inline-block;
-  background-color: red;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
+.last-message {
+  font-style: italic;
 }

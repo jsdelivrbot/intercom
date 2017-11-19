@@ -1,14 +1,62 @@
 /* You can add global styles to this file, and also import other style files */
 
 * {
-  margin: 0;
+  vertical-align: baseline;
+  font-weight: inherit;
+  font-family: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  border: 0 none;
+  outline: 0;
   padding: 0;
+  margin: 0;
 }
 
 body {
   overflow: hidden;
-  /*height: 100%;*/
-  /*display: flex;*/
-  /*box-sizing: border-box;*/
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #393B45;
 }
 
+h1 {
+  font-size: 1.9em;
+}
+
+h2 {
+  font-size: 1.7em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+h4{
+  font-size: 1.3em;
+}
+
+h5{
+  font-size: 1em;
+}
+
+h6 {
+  font-size: 1em;
+  color: #aaa;
+}
+
+strong {
+  font-weight: 700;
+}
+
+a {
+  color: #393B45;
+  text-decoration: none;
+}
+
+a:active {
+  color: inherit;
+}
+
+a:visited {
+  color: inherit;
+}
