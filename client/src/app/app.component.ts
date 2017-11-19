@@ -10,14 +10,11 @@ import {UserService} from './core/user.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private socketService: SocketService, public chatLogService: ConversationService, public userService: UserService) { }
+  conversations;
+
+  constructor(private socketService: SocketService, public conversationService: ConversationService, public userService: UserService) { }
 
   ngOnInit() {
-    // this.messengerService.getMessages()
-    //   .subscribe((data: IMessage) => {
-    //   console.log('got some data', data);
-    //     this.chatLogService.addToLog(data.userId, data);
-    //
-    //   })
+    this.conversations = this.conversationService.getAllConversations();
   }
 }

@@ -2,17 +2,17 @@
 
 <div class="container">
   <div id="chat-sidebar">
-    <div *ngFor="let visitorId of chatLogService.getAllVisitors()">
+    <div *ngFor="let convo of conversations">
 
       <a class="visitor-tab"
-         routerLink="/conversation/{{chatLogService.threads[visitorId].visitor.id}}"
+         routerLink="/conversation/{{convo.visitor.id}}"
          routerLinkActive="is-active">
 
         <!--<div class="unread"></div>-->
-        {{chatLogService.threads[visitorId].visitor.alias}}
+        {{convo.visitor.alias}}
 
         <!-- TODO: This is garbage -->
-        <p style="font-style: italic">{{chatLogService.threads[visitorId].log[chatLogService.threads[visitorId].log.length - 1].userId}}: {{chatLogService.threads[visitorId].log[chatLogService.threads[visitorId].log.length - 1].text}}</p>
+        <p style="font-style: italic">{{convo.log[convo.log.length - 1].userId}}: {{convo.log[convo.log.length - 1].text}}</p>
       </a>
 
     </div>

@@ -23,17 +23,17 @@ export class ChatBoxComponent implements OnInit, OnDestroy, OnChanges {
   ngOnInit() {
     this.route.params.subscribe(params => {
       // TODO: find out if there's a better way to do this
-      if (!this.conversationService.threads.hasOwnProperty(params.id)) {
-        this.router.navigateByUrl('/');
-        return;
-      }
+      // if (!this.conversationService.threads.hasOwnProperty(params.id)) {
+      //   this.router.navigateByUrl('/');
+      //   return;
+      // }
 
       this.visitorId = params.id;
-      console.log(this.conversationService.threads);
-      this.visitorName = this.conversationService.threads[this.visitorId].visitor.name;
+      const currConvo = this.conversationService.getConversation(this.visitorId);
+      // console.log(this.conversationService.threads);
+      this.visitorName = currConvo.visitor.alias;
 
-      this.messages = this.conversationService
-        .getLog(params.id)
+      this.messages = currConvo.log;
     });
   }
 
