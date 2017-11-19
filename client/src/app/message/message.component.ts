@@ -27,7 +27,6 @@ export class MessageComponent implements OnInit {
   }
 
   private getAvatarColor(): string {
-    console.log(this.userType)
-    return this.userType === 'admin' ? '#584848' : this.visitor.avatarColor
+    return this.userType === 'admin' ? '#584848' : this.visitor.avatarColor;
   }
 }

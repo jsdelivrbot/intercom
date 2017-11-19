@@ -34,10 +34,8 @@ export class ConversationService {
     // Find the relevant conversation the message should belong to
     let conv = this.getConversation(id);
     if (conv === null) {
-      conv = this.createConversation(id)
+      conv = this.createConversation(id);
     }
-
-    console.log('adding new mesg')
 
     // Update the message with the relevant user alias
     message.userAlias = (message.userId === id) ? conv.visitor.alias : this.userService.admin.alias;
@@ -45,8 +43,5 @@ export class ConversationService {
     // Add the message to the conversation
     conv.log.push(message);
     conv.latestMessage = message;
-
-    console.log('adding new mesg', conv)
-
   }
 }
