@@ -6,6 +6,10 @@
   padding: 10px;
 }
 
+.tab:hover {
+  background-color: #eef1f6;
+}
+
 .tab.is-active {
   background-color: #e5eaf2;
 }

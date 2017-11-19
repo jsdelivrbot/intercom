@@ -1,5 +1,8 @@
-<div *ngFor="let convo of (conversations | sortByLatest)">
+<div *ngIf="conversations.length === 0" style="padding: 10px">
+  <em>No active conversations.</em>
+</div>
 
+<div *ngFor="let convo of (conversations | sortByLatest)">
   <a class="tab"
      routerLink="/conversation/{{convo.visitor.id}}"
      routerLinkActive="is-active">
