@@ -34,6 +34,11 @@ export class ChatBoxComponent implements OnInit {
     });
   }
 
+  private scrollToBottom(): void {
+    const el = document.getElementById('chat-box');
+    el.scrollTop = el.scrollHeight;
+  }
+
   send(e) {
     if (e.keyCode === 13) {
       e.preventDefault();
@@ -46,6 +51,7 @@ export class ChatBoxComponent implements OnInit {
       // add new message to the conversation log
       this.conversationService.addNewMessage(this.visitor.id, msg);
       e.target.value = '';
+      this.scrollToBottom();
     }
   }
 }
