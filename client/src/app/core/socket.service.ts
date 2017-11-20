@@ -25,6 +25,11 @@ export class SocketService {
     this.socket.on('visitor-message', (message: Message) => {
       this.conversationService.addNewMessage(message.userId, message);
     });
+
+    // listens for visitor disconnect
+    this.socket.on('visitor-disconnected', (id: string) => {
+      this.conversationService.endConversation(id);
+    });
   }
 
   public sendMessage(visitorId: string, msg: Message) {

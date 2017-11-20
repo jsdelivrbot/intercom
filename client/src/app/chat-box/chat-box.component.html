@@ -1,10 +1,16 @@
 <div id="chat-box">
-  <h2>{{visitor?.alias}}</h2>
+  <h2>{{conversation?.visitor.alias}}</h2>
 
-  <div *ngFor="let message of messages">
+  <div *ngFor="let message of conversation?.log">
     <app-message [message]="message"
-                 [visitor]="visitor"></app-message>
+                 [visitor]="conversation.visitor"></app-message>
+  </div>
+
+  <div *ngIf="!conversation?.open">
+    <em>The user has disconnected.</em>
   </div>
 </div>
 
-<input (keydown)="send($event)" autofocus>
+<input autofocus
+       (keydown)="send($event)"
+       [disabled]="!conversation?.open">

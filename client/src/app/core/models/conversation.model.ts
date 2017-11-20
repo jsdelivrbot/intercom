@@ -6,6 +6,7 @@ export interface IConversation {
   visitor: User;
   log: IMessage[];
   latestMessage: Message;
+  open: boolean;
 }
 
 export class Conversation implements IConversation {
@@ -13,11 +14,13 @@ export class Conversation implements IConversation {
   visitor: User;
   log: IMessage[];
   latestMessage: Message;
+  open: boolean;
 
   constructor(visitor: User) {
     this.id = visitor.id;
     this.visitor = visitor;
     this.log = [];
     this.latestMessage = null;
+    this.open = true;
   }
 }

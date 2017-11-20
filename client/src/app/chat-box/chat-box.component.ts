@@ -5,6 +5,7 @@ import {SocketService} from '../core/socket.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../core/user.service';
 import {User} from '../core/models/user.model';
+import {Conversation} from '../core/models/conversation.model';
 
 @Component({
   selector: 'app-chat-box',
@@ -13,24 +14,19 @@ import {User} from '../core/models/user.model';
 })
 export class ChatBoxComponent implements OnInit {
 
-  messages: Message[] = [];
-
-  visitor: User;
+  public conversation: Conversation;
 
   constructor(public conversationService: ConversationService, public userService: UserService, private socketService: SocketService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const currConvo = this.conversationService.getConversation(params.id);
+      this.conversation = this.conversationService.getConversation(params.id);
 
       // If url contains invalid user ID
-      if (currConvo === null) {
+      if (this.conversation === null) {
         this.router.navigateByUrl('/');
         return;
       }
-
-      this.visitor = currConvo.visitor;
-      this.messages = currConvo.log;
     });
   }
 
@@ -46,10 +42,10 @@ export class ChatBoxComponent implements OnInit {
       const msg = new Message(this.userService.admin, e.target.value);
 
       // send new message to visitor
-      this.socketService.sendMessage(this.visitor.id, msg);
+      this.socketService.sendMessage(this.conversation.visitor.id, msg);
 
       // add new message to the conversation log
-      this.conversationService.addNewMessage(this.visitor.id, msg);
+      this.conversationService.addNewMessage(this.conversation.visitor.id, msg);
       e.target.value = '';
 
       // Scroll chat window to bottom

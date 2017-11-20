@@ -44,4 +44,11 @@ export class ConversationService {
     conv.log.push(message);
     conv.latestMessage = message;
   }
+
+  public endConversation(id: string): void {
+    const conv = this.getConversation(id);
+    if (conv) {
+      conv.open = false;
+    }
+  }
 }

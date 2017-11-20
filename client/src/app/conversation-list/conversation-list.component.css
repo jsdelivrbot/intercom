@@ -14,6 +14,10 @@
   background-color: #e5eaf2;
 }
 
+.closed > * {
+  color: #D8D9DE;
+}
+
 .last-message {
   font-style: italic;
 }

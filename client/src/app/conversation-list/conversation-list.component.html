@@ -5,7 +5,8 @@
 <div *ngFor="let convo of (conversations | sortByLatest)">
   <a class="tab"
      routerLink="/conversation/{{convo.visitor.id}}"
-     routerLinkActive="is-active">
+     routerLinkActive="is-active"
+     [ngClass]="{'closed': !convo.open}">
 
     <h4>{{convo.visitor.alias}}</h4>
 
