@@ -55,6 +55,12 @@ function createMessage(val, sender) {
   const bubble = createDomElement('div', message);
   bubble.classList.add('bubble');
   bubble.innerHTML = val;
+  scrollToBottom();
+}
+
+function scrollToBottom() {
+  const el = document.getElementById('chat-box');
+  el.scrollTop = el.scrollHeight;
 }
 
 socket.on('reply', (msg) => {
