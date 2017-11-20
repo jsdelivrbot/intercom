@@ -3,15 +3,15 @@ import { Injectable } from '@angular/core';
 import { Message } from './models/message.model';
 import {ConversationService} from './conversation.service';
 import {UserService} from './user.service';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class SocketService {
 
-  private url = 'http://localhost:8888';
   private socket;
 
   constructor(private conversationService: ConversationService, private userService: UserService) {
-    this.socket = io(this.url);
+    this.socket = io(environment.socketUrl);
 
     // this tells the server which socket ID belongs to the admin
     this.socket.emit('admin-init', 'admin initialized');
