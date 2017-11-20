@@ -2,7 +2,7 @@
 import io from './lib/socket.io.js';
 import './style.css';
 
-const socket = io('https://chat-dashboard.herokuapp.com/', {secure: true, port: 8888});
+const socket = io('https://chat-dashboard.herokuapp.com/', {secure: true, port: 8888, autoConnect: true});
 
 const icon = createDomElement('div', document.body);
 icon.id = 'chat-icon';
