@@ -32,7 +32,7 @@ const input = createDomElement('input', chatWidget);
 input.addEventListener('keypress', (e) => {
   if (e.keyCode === 13) {
     e.preventDefault();
-    socket.emit('visitor message', input.value);
+    socket.emit('visitor-message', input.value);
     createMessage(input.value, 'visitor');
     input.value = '';
   }
