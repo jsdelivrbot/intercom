@@ -7,11 +7,10 @@ import {UserService} from './user.service';
 @Injectable()
 export class SocketService {
 
-  private url = 'http://localhost:8888';
   private socket;
 
   constructor(private conversationService: ConversationService, private userService: UserService) {
-    this.socket = io(this.url);
+    this.socket = io();
 
     // this tells the server which socket ID belongs to the admin
     this.socket.emit('admin-init', 'admin initialized');
